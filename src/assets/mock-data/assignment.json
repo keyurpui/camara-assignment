@@ -1,0 +1,61 @@
+{
+  "camera": [
+    { "id": 111, "deviceNo": 1111 },
+    { "id": 112, "deviceNo": 1122 },
+    { "id": 113, "deviceNo": 1133 },
+    { "id": 114, "deviceNo": 1134 },
+    { "id": 115, "deviceNo": 1135 },
+    { "id": 116, "deviceNo": 1136 },
+    { "id": 117, "deviceNo": 1137 },
+    { "id": 118, "deviceNo": 1138 },
+    { "id": 119, "deviceNo": 1139 }
+  ],
+  "vehicle": [
+    { "id": 211, "name": "vh1" },
+    { "id": 212, "name": "vh2" },
+    { "id": 213, "name": "vh3" },
+    { "id": 214, "name": "vh4" },
+    { "id": 215, "name": "vh5" },
+    { "id": 216, "name": "vh6" },
+    { "id": 217, "name": "vh7" },
+    { "id": 218, "name": "vh8" },
+    { "id": 219, "name": "vh9" }
+  ],
+  "assignments": [
+    {
+      "id": 911,
+      "cameraId": 111,
+      "vehicleId": 211,
+      "dateCreated": "12/22/22",
+      "deleted": true
+    },
+    {
+      "id": 912,
+      "cameraId": 112,
+      "vehicleId": 212,
+      "dateCreated": "12/22/22",
+      "deleted": true
+    },
+    {
+      "id": 913,
+      "cameraId": 113,
+      "vehicleId": 213,
+      "dateCreated": "12/22/22",
+      "deleted": true
+    },
+    {
+      "id": 914,
+      "cameraId": 114,
+      "vehicleId": 214,
+      "dateCreated": "12/22/22",
+      "deleted": true
+    },
+    {
+      "id": 915,
+      "cameraId": 115,
+      "vehicleId": 215,
+      "dateCreated": "12/22/22",
+      "deleted": true
+    }
+  ]
+}

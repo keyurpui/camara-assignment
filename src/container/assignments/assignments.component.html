@@ -1,0 +1,157 @@
+<main role="main">
+  <div class="container">
+    <div class="page-content">
+      <div class="form-group assignments-toolbar row">
+        <div class="col-md-8">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search assignments"
+            [formControl]="searchField"
+          />
+        </div>
+        <div class="col-md-4">
+          <button
+            type="button"
+            class="btn btn-primary btn-block"
+            (click)="openModalDialog()"
+          >
+            Create New Assignment
+          </button>
+        </div>
+      </div>
+      <div class="assignments-cards">
+        <div class="row">
+          <div class="col-md-4" *ngFor="let assignment of visibleAssignments">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Assignment ID {{ assignment.id }}</h5>
+                <p class="card-text">Camera ID : {{ assignment.cameraId }}</p>
+                <p class="card-text">vehicle ID : {{ assignment.vehicleId }}</p>
+                <p class="card-text">
+                  Date Created : {{ assignment.dateCreated }}
+                </p>
+                <div class="card-control">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="openModalDialog(assignment)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteAssignment(assignment)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jumbotron">
+      <ul class="list-group">
+        <li class="list-group-item active">Notes:</li>
+        <li class="list-group-item">
+          This app is using session storage to do edit, delete and update. in
+          real app it should be done using REST api calls to back end database.
+          Just to give CRUD a working experience I have used session storage
+          trick.
+        </li>
+        <li class="list-group-item">
+          Other improvements: This app should have Angular Material or any other
+          Angular theme instated of plain Bootstrap.
+        </li>
+        <li class="list-group-item">
+          Now a days state management is important so this app should have state
+          management using NGRX.
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- modal -->
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{ display: display }"
+    *ngIf="assignmentsDto && newAssignmentForm"
+  >
+    <div class="modal-dialog" role="document">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        [ngStyle]="{ display: alertDisplay }"
+      >
+        {{ alertMessage }}
+      </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create New Assignment</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            (click)="closeModalDialog()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Please choose Camera and vehicle to create new Assignment.</p>
+          <form [formGroup]="newAssignmentForm">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label>Select Camera</label>
+                <select class="form-control" formControlName="camera">
+                  <option [ngValue]="null" disabled>Choose Camera</option>
+                  <option
+                    *ngFor="let cameraItem of assignmentsDto.camera"
+                    [ngValue]="cameraItem.id"
+                  >
+                    {{ cameraItem.id }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Select vehicle</label>
+                <select class="form-control" formControlName="vehicle">
+                  <option [ngValue]="null" disabled>Choose vehicle</option>
+                  <option
+                    *ngFor="let vehicleItem of assignmentsDto.vehicle"
+                    [ngValue]="vehicleItem.id"
+                  >
+                    {{ vehicleItem.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="!newAssignmentForm.valid"
+            (click)="onCreateAssignment()"
+          >
+            {{ selectedAssignment ? "Edit" : "Create" }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            (click)="closeModalDialog()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
